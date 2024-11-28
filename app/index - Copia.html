@@ -1,0 +1,71 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>APP Cadastro Produtos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="libs/materialize.min.css">
+        <link rel="stylesheet" href="libs/jquery-ui.css">
+    </head>
+      <body>
+        <main>
+            <div class="container center-align">
+                 <div class="col s4 m3 l2 center-align oculto" id="menuBoletim12">
+                                    <i class="medium material-icons clique brown-text text-darken-1" onclick="testeEnvio()">dvr</i><br/>
+                                    <label class="blue-text text-darken-3 clique" onclick="testeEnvio()">TESTAR</label>
+                                </div>
+            </div>
+        </main>
+        <script src="libs/jquery-3.4.1.min.js"></script>
+        <script src="libs/jquery-ui.min.js"></script>
+        <script src="libs/materialize.min.js"></script>
+        <script src="libs/jquery.mask.js"></script>
+        <script src="libs/app.js"></script>
+          
+          
+         <script>
+            function testeEnvio() {
+                var url = "http://localhost:8080/produtos";
+                var dados = `{"nome":"Celular FLIP FLOP 2",
+"descricao":"Novo celular",
+"valor": 2500.00,
+"qtdeEstoque":5,
+"estoqueMinimo":2,
+"imagem":"SEM IMAGEM"
+}`;
+                var funcao = function (json) {
+                    console.log(json);
+                    exibirMensagem(json.id);
+                }
+
+
+                buscarDados(url, dados, funcao);
+                //buscarDadosNoParseJSON(url, dados, funcao);
+            }
+        </script>  
+        
+        <div id="dialog" title="ATENÇÃO!" style="display: none">
+            <p class="center-align"><i class="material-icons medium amber-text">info</i><br/><span class="indigo-text center-align" id="msgResp"></span></p>
+        </div>
+        
+        <div id="dialogAguarde" class="modal oculto" title="AGUARDE...">
+            <div class="modal-content">
+                <div class='preloader-wrapper small active'>
+                    <div class='spinner-layer spinner-blue-only'>
+                        <div class='circle-clipper left'>
+                            <div class='circle'></div>
+                        </div>
+                        <div class='gap-patch'>
+                            <div class='circle'></div>
+                        </div>
+                        <div class='circle-clipper right'>
+                            <div class='circle'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
